@@ -4,6 +4,22 @@
 #include <stdio.h>
 #include "core.h"
 
+#define TOGGLEABLE(name, default) int name = default; \
+void toggle_##name() { \
+    if(name) { \
+        name = 0; \
+    } \
+    else { \
+        name = 1; \
+    } \
+}
+
+TOGGLEABLE(LEFT_MODE, 0)
+TOGGLEABLE(HIGH_TO_LOW, 0)
+TOGGLEABLE(NUMBER_MODE, 0)
+
+#define TOGGLE(name) toggle_##name()
+
 char blank_fretboard[] = "||---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---||\n"
 "||---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---||\n"
 "||---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---||\n"
@@ -22,21 +38,6 @@ char fretboard[] = "||---|---|---|---|---|---|---|---|---|---|---|---|---|---|--
 static const int FRETBOARD_STRING_WIDTH = sizeof("||---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---||\n") / sizeof(char);
 
 char int_to_char[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'};
-
-int LEFT_MODE = 1;
-void left_mode(int i) {   
-    LEFT_MODE = i;
-}
-
-int HIGH_TO_LOW = 1;
-void high_to_low(int i) {   
-    HIGH_TO_LOW = i;
-}
-
-int NUMBER_MODE = 1;
-void number_mode(int i) {
-    NUMBER_MODE = i;
-}
 
 void mark_fretboard(int string, int fret)
 {
