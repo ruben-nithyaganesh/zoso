@@ -1,1 +1,2 @@
-gcc main.c -o zoso
+mkdir -p build
+gcc src/zoso.c -o build/zoso
