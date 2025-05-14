@@ -42,7 +42,7 @@ void clear_fretboard() {
     }
 }
 
-char* slice_fretboard(int start, int end) {
+void slice_fretboard(int start, int end) {
     if(LEFT_MODE) {
         start = FRETBOARD_SIZE - end;
         end = FRETBOARD_SIZE - start;
@@ -66,9 +66,7 @@ char* slice_fretboard(int start, int end) {
 
 void show_fretboard() {
     printf("  ");
-    int start = 4;
-    int end = 8;
-    for(int i = start+1; i < end; i++) {
+    for(int i = 1; i < FRETBOARD_SIZE-1; i++) {
         int ind = (LEFT_MODE == 1) ? i-1 : FRETBOARD_SIZE - i;
         if(ind == 3 || ind == 5 || ind == 7 || ind == 9 || ind == 15 || ind == 17 || ind == 19 || ind == 21) {
             printf(" .  ");
@@ -81,7 +79,8 @@ void show_fretboard() {
         }
     }
     printf(" \n");
-    printf("%s", slice_fretboard(start, end));
+    printf("%s", fretboard);
+    // slice_fretboard(start, end);
     printf("\n");
 }
 

@@ -4,8 +4,6 @@
 #include "parser.h"
 #include "text_renderer.h"
 
-
-
 void core_loop() {
     while(1) {
         char input[INPUT_SIZE + 1];
